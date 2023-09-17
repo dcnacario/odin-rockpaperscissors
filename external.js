@@ -1,9 +1,11 @@
+// variables
 let computerChoice = "";
 let message = "";
 let playerScore = 0;
 let computerScore = 0;
 let draw = 0;
 
+//getting the computerChoice randomly using the math random
 function getComputerChoice(){
     let choice = Math.floor(Math.random() * 3);
 
@@ -18,6 +20,7 @@ function getComputerChoice(){
     }
 }
 
+//the algorithm for choosing the winner
 function playRound (playerChoice,computerChoice){
     let playerChoiceNotSensitive = playerChoice.toLowerCase();
     if (playerChoiceNotSensitive == "rock" && computerChoice == "scissors"){
@@ -54,6 +57,7 @@ function playRound (playerChoice,computerChoice){
     }
 }
 
+// function for starting the game that will loop for 5 games
 function game(){
     let playerChoice = prompt("Choices: Rock, Paper, Scissors", "");
     for(i = 0 ; i < 5 ; i++){
