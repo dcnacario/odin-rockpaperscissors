@@ -7,7 +7,6 @@ let draw = 0;
 
 const bod = document.querySelector("body");
 const div = document.createElement("div");
-const content = document.querySelector("div");
 const pPlayer = document.createElement("p");
 const pComputer = document.createElement("p");
 div.classList.add("result");
@@ -72,28 +71,44 @@ const buttons = document.querySelectorAll("button");
 buttons.forEach((button)=>{
     button.addEventListener("click",(e)=>{
         let playerChoice = button.value;
+        let message = playRound(playerChoice,getComputerChoice());
+        div.textContent = message;
+        pPlayer.textContent = "Player Score: "+playerScore;
+        pComputer.textContent = "Computer Score: "+computerScore;
+        div.appendChild(pPlayer);
+        div.appendChild(pComputer);
 
-        if(playerScore == 5){
+        if(playerScore >= 5){
             pPlayer.textContent = "You Win!";
+            pComputer.textContent = "";
+            const btn = document.createElement("button");
+            btn.setAttribute('id','playAgain');
+            btn.textContent = "Play again";
+            div.appendChild(btn);
+            restartGame(btn);
         }
-        else if(computerScore == 5){
+        else if(computerScore >= 5){
             pComputer.textContent = "You Lose, Computer Wins";
-        }
-        else{
-            let message = playRound(playerChoice,getComputerChoice());
-            div.textContent = message;
-            pPlayer.textContent = "Player Score: "+playerScore;
-            pComputer.textContent = "Computer Score: "+computerScore;
-            div.appendChild(pPlayer);
-            div.appendChild(pComputer);
+            pPlayer.textContent = "";
+            const btn = document.createElement("button");
+            btn.setAttribute('id','playAgain');
+            btn.textContent = "Play again";
+            div.appendChild(btn);
+            restartGame(btn);
         }
     });
 });
 
 // function for starting the game that will loop for 5 games
-function game(){
+function restartGame(btn){
+    playerScore = 0;
+    computerScore = 0;
 
+    btn.addEventListener("click",()=>{
+        btn.remove();
+        pPlayer.textContent = "Player Score: "+playerScore;
+        pComputer.textContent = "Computer Score: "+computerScore;
+    })
 }
-game();
 
 
