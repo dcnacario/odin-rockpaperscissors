@@ -7,9 +7,10 @@ let draw = 0;
 
 const bod = document.querySelector("body");
 const div = document.createElement("div");
+
 const pPlayer = document.createElement("p");
 const pComputer = document.createElement("p");
-div.classList.add("result");
+div.setAttribute("id","result");
 
 bod.appendChild(div);
 
